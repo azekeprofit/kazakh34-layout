@@ -20,6 +20,7 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@xstate/store": "^3.6.2",
     "solid-js": "^1.9.6"
   }
 }
