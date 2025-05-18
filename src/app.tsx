@@ -1,10 +1,11 @@
 import { render } from "solid-js/web";
 import { bigrams, source } from "./frequencies";
-import { Keyboard } from "./layout";
+import { Keyboard } from "./keyboard";
 import { BigramTable, Letters } from "./panels";
-import { azeke, cyrillic, leftBoard, rightBoard, setLayout } from "./store";
+import { leftBoard, rightBoard, setLayout } from "./store";
 import { createContext, createSignal } from "solid-js";
 import { ZMK } from "./zmk";
+import { azeke, cyrillic } from "./layout";
 
 type boardModeType = 'fingers' | 'heatmap' | 'diff';
 export const BoardMode = createContext<() => boardModeType>(null!);

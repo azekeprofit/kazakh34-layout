@@ -19,8 +19,8 @@ export function LetterKey(props: { letter: letterKey, board: typeof leftBoard })
     
     return <div class={`w-12 h-12
      flex items-center justify-center rounded-md shadow-sm font-bold text-xl cursor-pointer
+     ${inputMode() && 'animate-bounce'}
      ${boardMode() == 'fingers' && `
-        ${inputMode() && 'animate-bounce'}
         ${fingers()[props.letter.col]}
         `}
         ${boardMode() == 'diff' && different() && 'bg-red-500'}

@@ -2,47 +2,8 @@ import { createStoreWithProducer } from "@xstate/store";
 import { useSelector } from "@xstate/store/solid";
 import { produce } from "immer";
 import { fingerColors } from "./frequencies";
-
-type layout = [left: string, right: string];
-export const cyrillic: layout = [
-  `
-йцуке
-фывап
-ячсми
-`,
-  `
-нгшщз
-ролдж
-тьбю⏎
-`,
-];
-
-// export const azeke: layout = [
-//   `
-// үұуке
-// қығап
-// өхсми
-// `,
-//   `
-// ніңгш
-// ролдж
-// тзбә⏎
-// `,
-// ];
-
-export const azeke: layout = [
-    `
-үұуке
-қығап
-өхсмй
- `,
-    `
-ндшгз
-ролің
-тжбә⏎
-  `,
-  ];
-
+import { cyrillic, layout } from "./layout";
+  
 export interface letterKey {
   letter: string;
   row: number;
