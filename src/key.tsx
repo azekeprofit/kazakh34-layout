@@ -3,7 +3,6 @@ import { createSignal, useContext } from "solid-js";
 import { BoardMode } from "./app";
 import { letters } from "./frequencies";
 import { cBoard, leftBoard, letterKey } from "./store";
-import { effect } from "solid-js/web";
 
 function heatMapColorforValue(place: number) {
     var h = (place / letters().length) * 180;

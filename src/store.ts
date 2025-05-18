@@ -17,18 +17,31 @@ export const cyrillic: layout = [
 `,
 ];
 
+// export const azeke: layout = [
+//   `
+// үұуке
+// қығап
+// өхсми
+// `,
+//   `
+// ніңгш
+// ролдж
+// тзбә⏎
+// `,
+// ];
+
 export const azeke: layout = [
-  `
+    `
 үұуке
 қығап
-өхсми
-`,
-  `
-ніңгш
-ролдж
-тзбә⏎
-`,
-];
+өхсмй
+ `,
+    `
+ндшгз
+ролің
+тжбә⏎
+  `,
+  ];
 
 export interface letterKey {
   letter: string;
