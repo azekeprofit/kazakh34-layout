@@ -1,7 +1,20 @@
 import { createStore } from "@xstate/store";
-import { cyrillic } from "./layout";
 import { fingerColors } from "./frequencies";
 import { useSelector } from "@xstate/store/solid";
+
+type layout = [left: string, right: string];
+const cyrillic: layout = [
+  `
+йцуке
+фывап
+ячсми
+`,
+  `
+нгшщз
+ролдж
+тьбю⏎
+`,
+];
 
 export interface letterKey {
   letter: string;
@@ -37,7 +50,7 @@ export const rightBoard = createStore(
   boardStore(cyrillic[1], fingerColors.map(f=>f+' ').reverse())
 );
 
-export const useBoard = () => {
+export const useBoards = () => {
   const left = useSelector(leftBoard, (s) => s.context.letters);
   const right = useSelector(rightBoard, (s) => s.context.letters);
   const leftFingers = useSelector(leftBoard, (s) => s.context.fingers);
