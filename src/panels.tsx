@@ -6,7 +6,6 @@ export function Letters() {
     const [left, right] = useBoards();
     const missing = (l: string) => !left()[l] && !right()[l];
     const missingCount = () => Object.keys(letterFrequencies).filter(missing).length;
-    const howMany = (side: typeof left) => Object.keys(letterFrequencies).filter(l => side()[l]).length;
 
     return <div>
         <div>Most frequent letters:</div>
@@ -15,8 +14,6 @@ export function Letters() {
                 class={`cursor-default ${missing(letter) && 'bg-red-200'}`}
                 title={freq.toString()}>{letter}</span>)}</For></div>
         <div>
-            <div>Left/right balance:</div>
-            <div>{howMany(left)} : {howMany(right)}</div>
             <div>Letters missing: {missingCount()}</div>
         </div>
     </div>

@@ -16,7 +16,7 @@ function App() {
         <p>
             <button onClick={() => setLayout(azeke)}>
                 azeke
-            </button> - my personal layout, with most frequent Kazakh letters placed on a 34 key split keyboard with the missing rarer letters put on ZMK combos.
+            </button> - my personal layout, with most frequent Kazakh letters placed on a 34 key split keyboard with the missing rarer letters put on ZMK combos (see full <a href="https://github.com/azekeprofit/zmk-config/blob/main/config/cradio.keymap">keymap</a> at my ZMK fork repo.
         </p>
 
         <div class="flex gap-5 font-sans">
