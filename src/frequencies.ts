@@ -1,6 +1,51 @@
 export type letter=keyof typeof letterFrequencies;
 export const fingerColors = ['bg-blue-100', 'bg-yellow-100', 'bg-green-100', 'bg-orange-100', 'bg-orange-100'];
 
+export const zmkCodes:Record<letter,string>={
+    'а': 'f',
+    'е': 't',
+    'ы': 's',
+    'н': 'y',
+    'і': 'N3',
+    'т': 'n',
+    'р': 'h',
+    'л': 'k',
+    'д': 'l',
+    'с': 'c',
+    'м': 'v',
+    'қ': 'N0',
+    'о': 'j',
+    'к': 'r',
+    'ғ': 'N5',
+    'б': 'COMMA',
+    'й': 'q',
+    'у': 'e',
+    'з': 'p',
+    'п': 'g',
+    'ш': 'i',
+    'г': 'u',
+    'ң': 'N4',
+    'и': 'b',
+    'ж': 'SEMICOLON',
+    'ұ': 'N9',
+    'ө': 'MINUS',
+    'ү': 'N8',
+    'ә': 'N2',
+    'я': 'z',
+    'х': 'LEFT_BRACKET',
+    'ц': 'w',
+    'ф': 'a',
+    'в': 'd',
+    'э': 'SQT',
+    'ь': 'm',
+    'ю': 'DOT',
+    'һ': 'EQUAL',
+    'ъ': 'RIGHT_BRACKET',
+    'ч': 'x',
+    'щ': 'o',
+    'ё': 'GRAVE',
+}
+
 export const source = 'А.K. Zhubanov, А.A. Zhanabekova, D. Tokmyrzaev, "THE STATISTICAL FOUNDATIONS OF THE LOCATION OF THE NATIONAL KAZAKH ALPHABET ON THE KEYBOARD", 2018';
 // Kazakh letter frequencies
 // full text corpus size is 67449690 letters

@@ -4,9 +4,10 @@ import { Keyboard } from "./layout";
 import { BigramTable, Letters } from "./panels";
 import { azeke, cyrillic, leftBoard, rightBoard, setLayout } from "./store";
 import { createContext, createSignal } from "solid-js";
+import { ZMK } from "./zmk";
 
 type boardModeType = 'fingers' | 'heatmap' | 'diff';
-export const BoardMode = createContext<()=>boardModeType>(null!);
+export const BoardMode = createContext<() => boardModeType>(null!);
 
 function App() {
     const [mode, setMode] = createSignal<boardModeType>('fingers');
@@ -40,6 +41,7 @@ function App() {
             <label><input type="radio" name='mode' value='heatmap' onClick={changeMode} />heatmap</label>
             <label><input type="radio" name='mode' value='diff' onClick={changeMode} />differences from cyrillic</label>
         </div>
+        <ZMK />
         <p>Source for data on Kazakh letter frequency: {source}</p>
     </div>;
 }
