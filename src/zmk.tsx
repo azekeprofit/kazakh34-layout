@@ -1,7 +1,52 @@
 import { useSelector } from "@xstate/store/solid";
-import { leftBoard, letterKey, rightBoard, useBoards } from "./store"
-import { zmkCodes } from "./frequencies";
 import { For } from "solid-js";
+import { leftBoard, rightBoard } from "./store";
+import { letter } from "./frequencies";
+
+const zmkCodes:Record<letter,string>={
+    'а': 'F',
+    'е': 'T',
+    'ы': 'S',
+    'н': 'Y',
+    'і': 'N3',
+    'т': 'N',
+    'р': 'H',
+    'л': 'K',
+    'д': 'L',
+    'с': 'C',
+    'м': 'V',
+    'қ': 'N0',
+    'о': 'J',
+    'к': 'R',
+    'ғ': 'N5',
+    'б': 'COMMA',
+    'й': 'Q',
+    'у': 'E',
+    'з': 'P',
+    'п': 'G',
+    'ш': 'I',
+    'г': 'U',
+    'ң': 'N4',
+    'и': 'B',
+    'ж': 'SEMICOLON',
+    'ұ': 'N9',
+    'ө': 'MINUS',
+    'ү': 'N8',
+    'ә': 'N2',
+    'я': 'Z',
+    'х': 'LEFT_BRACKET',
+    'ц': 'W',
+    'ф': 'A',
+    'в': 'D',
+    'э': 'SQT',
+    'ь': 'M',
+    'ю': 'DOT',
+    'һ': 'EQUAL',
+    'ъ': 'RIGHT_BRACKET',
+    'ч': 'X',
+    'щ': 'O',
+    'ё': 'GRAVE',
+}
 
 export function ZMK() {
     const left = useSelector(leftBoard, (s) => s.context.rows);
