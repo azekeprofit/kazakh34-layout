@@ -8,6 +8,7 @@ export function bundle(prod: boolean) {
     outdir: "./dist",
     target:'browser',
     minify: prod,
+    sourcemap: prod?'none':'external',
     define: {
       "process.env.NODE_ENV": prod ? '"production"' : '"development"',
     },
