@@ -1,8 +1,5 @@
-
-
 export type letter=keyof typeof letterFrequencies;
 export const fingerColors = ['bg-blue-100', 'bg-yellow-100', 'bg-green-100', 'bg-orange-100', 'bg-orange-100'];
-export const rowClasses=['underline underline-offset-[-2ex]','','underline'];
 
 export const source = 'А.K. Zhubanov, А.A. Zhanabekova, D. Tokmyrzaev, "THE STATISTICAL FOUNDATIONS OF THE LOCATION OF THE NATIONAL KAZAKH ALPHABET ON THE KEYBOARD", 2018';
 // Kazakh letter frequencies

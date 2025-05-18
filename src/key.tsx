@@ -1,6 +1,5 @@
 import { useSelector } from "@xstate/store/solid";
 import { leftBoard, letterKey } from "./store";
-import { rowClasses } from "./frequencies";
 import { createSignal } from "solid-js";
 
 export function LetterKey(props: { letter: letterKey, board: typeof leftBoard }) {
@@ -9,7 +8,7 @@ export function LetterKey(props: { letter: letterKey, board: typeof leftBoard })
     return <div class={`w-12 h-12
      flex items-center justify-center rounded-md shadow-sm font-bold text-xl
      ${inputMode() && 'animate-bounce'}
-     ${fingers()[props.letter.col]} ${rowClasses[props.letter.row]}`}
+     ${fingers()[props.letter.col]}`}
      tabIndex={-1}
         onclick={() => setInput(true)}
         onkeypress={(e) => {

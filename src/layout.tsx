@@ -1,8 +1,7 @@
-import { For } from "solid-js";
-import { letter, rowClasses } from "./frequencies";
 import { useSelector } from '@xstate/store/solid';
-import { leftBoard, letterKey } from "./store";
+import { For } from "solid-js";
 import { LetterKey } from "./key";
+import { leftBoard } from "./store";
 
 export function Keyboard(props: { board: typeof leftBoard }) {
   const rows = useSelector(props.board, s => s.context.rows);

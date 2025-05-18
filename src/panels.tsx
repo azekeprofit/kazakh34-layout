@@ -8,7 +8,8 @@ export function Letters() {
     const missingCount = () => Object.keys(letterFrequencies).filter(missing).length;
     const howMany = (side: typeof left) => Object.keys(letterFrequencies).filter(l => side()[l]).length;
 
-    return <div class="font-mono">
+    return <div>
+        <div>Most frequent letters:</div>
         <div><For each={Object.entries(letterFrequencies)}>{
             (([letter, freq]) => <span
                 class={`cursor-default ${missing(letter) && 'bg-red-200'}`}
@@ -22,7 +23,8 @@ export function Letters() {
 }
 
 export function BigramTable({ array }: { array: Record<string, number> }) {
-    return <div class={`w-[200px] font-mono`}>
+    return <div class={`w-[200px]`}>
+        <div>Most frequent bigrams:</div>
         <For each={Object.entries(array)}>{
             ([letter, freq]) => <Bigram bigram={letter} freq={freq} />
         }</For>
