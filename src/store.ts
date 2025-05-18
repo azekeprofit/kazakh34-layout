@@ -22,11 +22,12 @@ export const azeke: layout = [
 үұуке
 қығап
 өхсми
-`,`
+`,
+  `
 ніңгш
 ролдж
 тзбә⏎
-`
+`,
 ];
 
 export interface letterKey {
@@ -74,7 +75,10 @@ const boardStore = () =>
 export const leftBoard = boardStore();
 export const rightBoard = boardStore();
 
-export function setLayout([left, right]: layout) {
+export function setLayout(
+  [leftBoard, rightBoard]: [typeof leftBoard, typeof leftBoard],
+  [left, right]: layout
+) {
   leftBoard.send({ type: "init", board: left, fingers: fingerColors });
   rightBoard.send({
     type: "init",
@@ -83,7 +87,15 @@ export function setLayout([left, right]: layout) {
   });
 }
 
-setLayout(cyrillic)
+setLayout([leftBoard, rightBoard], cyrillic);
+
+export const cLeft = boardStore();
+export const cRight = boardStore();
+setLayout([cLeft, cRight], cyrillic);
+
+export const cBoard = new Map<typeof leftBoard, typeof leftBoard>();
+cBoard.set(leftBoard, cLeft);
+cBoard.set(rightBoard, cRight);
 
 export const useBoards = () => {
   const left = useSelector(leftBoard, (s) => s.context.letters);

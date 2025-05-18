@@ -4,6 +4,7 @@ export const fingerColors = ['bg-blue-100', 'bg-yellow-100', 'bg-green-100', 'bg
 export const source = 'А.K. Zhubanov, А.A. Zhanabekova, D. Tokmyrzaev, "THE STATISTICAL FOUNDATIONS OF THE LOCATION OF THE NATIONAL KAZAKH ALPHABET ON THE KEYBOARD", 2018';
 // Kazakh letter frequencies
 // full text corpus size is 67449690 letters
+export const letters=()=>Object.keys(letterFrequencies);
 export const letterFrequencies = {
     'а': 8630862,
     'е': 5660025,
