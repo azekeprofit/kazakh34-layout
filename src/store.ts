@@ -1,9 +1,10 @@
-import { createStore } from "@xstate/store";
-import { fingerColors } from "./frequencies";
+import { createStoreWithProducer } from "@xstate/store";
 import { useSelector } from "@xstate/store/solid";
+import { produce } from "immer";
+import { fingerColors } from "./frequencies";
 
 type layout = [left: string, right: string];
-const cyrillic: layout = [
+export const cyrillic: layout = [
   `
 йцуке
 фывап
@@ -16,39 +17,73 @@ const cyrillic: layout = [
 `,
 ];
 
+export const azeke: layout = [
+  `
+үұуке
+қығап
+өхсми
+`,`
+ніңгш
+ролдж
+тзбә⏎
+`
+];
+
 export interface letterKey {
   letter: string;
   row: number;
   col: number;
 }
 
-const boardStore = (board: string, fingers: string[]) => {
-  const letters: Record<string, letterKey> = {};
-
-  const rows = board
-    .trim()
-    .split("\n")
-    .map((line, row) =>
-      line.split("").map((letter, col) => {
-        const obj = { letter, row, col };
-        letters[letter] = obj;
-        return obj;
-      })
-    );
-  return {
+const boardStore = () =>
+  createStoreWithProducer(produce, {
     context: {
-      rows,
-      fingers,
-      letters,
+      rows: [] as letterKey[][],
+      fingers: [],
+      letters: {} as Record<string, letterKey>,
     },
-    on: {},
-  };
-};
+    on: {
+      init: (context, event: { board: string; fingers: string[] }) => {
+        const letters: Record<string, letterKey> = {};
+        const rows = event.board
+          .trim()
+          .split("\n")
+          .map((line, row) =>
+            line.split("").map((letter, col) => {
+              const obj = { letter, row, col };
+              letters[letter] = obj;
+              return obj;
+            })
+          );
+        context.letters = letters;
+        context.rows = rows;
+        context.fingers = event.fingers;
+      },
+      setKey: (
+        context,
+        event: { row: number; col: number; letter: string }
+      ) => {
+        const oldLetter = context.rows[event.row][event.col];
+        delete context.letters[oldLetter.letter];
+        oldLetter.letter = event.letter;
+        context.letters[event.letter] = oldLetter;
+      },
+    },
+  });
 
-export const leftBoard = createStore(boardStore(cyrillic[0], fingerColors));
-export const rightBoard = createStore(
-  boardStore(cyrillic[1], fingerColors.map(f=>f+' ').reverse())
-);
+export const leftBoard = boardStore();
+export const rightBoard = boardStore();
+
+export function setLayout([left, right]: layout) {
+  leftBoard.send({ type: "init", board: left, fingers: fingerColors });
+  rightBoard.send({
+    type: "init",
+    board: right,
+    fingers: fingerColors.map((f) => f + " ").reverse(),
+  });
+}
+
+setLayout(cyrillic)
 
 export const useBoards = () => {
   const left = useSelector(leftBoard, (s) => s.context.letters);

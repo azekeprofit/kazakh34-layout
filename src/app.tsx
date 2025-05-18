@@ -2,7 +2,7 @@ import { render } from "solid-js/web";
 import { bigrams, source } from "./frequencies";
 import { Keyboard } from "./layout";
 import { BigramTable, Letters } from "./panels";
-import { leftBoard, rightBoard } from "./store";
+import { azeke, cyrillic, leftBoard, rightBoard, setLayout } from "./store";
 
 function App() {
     return <div>
@@ -12,7 +12,15 @@ function App() {
             <Letters />
             <BigramTable array={bigrams} />
         </div>
-        <p>Source for data: {source}</p>
+        <div>
+                <button onClick={()=>setLayout(azeke)}>
+                    azeke
+                </button>
+                <button onClick={()=>setLayout(cyrillic)}>
+                    cyrillic
+                </button>
+        </div>
+        <p>Source for data on Kazakh letter frequency: {source}</p>
     </div>;
 }
 

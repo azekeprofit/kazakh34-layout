@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@xstate/store": "^3.6.2",
+    "immer": "^10.1.1",
     "solid-js": "^1.9.6"
   }
 }

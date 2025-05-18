@@ -14,17 +14,20 @@ export function Letters() {
                 class={`cursor-default ${missing(letter) && 'bg-red-200'}`}
                 title={freq.toString()}>{letter}</span>)}</For></div>
         <div>
+            <div>Left/right balance:</div>
             <div>{howMany(left)} : {howMany(right)}</div>
-            <div>Missing: {missingCount()}</div>
+            <div>Letters missing: {missingCount()}</div>
         </div>
     </div>
 }
 
 export function BigramTable({ array }: { array: Record<string, number> }) {
-    return <div class={`h-[250px] w-[200px] font-mono`}>
+    return <div class={`w-[200px] font-mono`}>
         <For each={Object.entries(array)}>{
             ([letter, freq]) => <Bigram bigram={letter} freq={freq} />
-        }</For></div>
+        }</For>
+        <div>Highlighted bigrams are typed with the same finger</div>
+    </div>
 }
 
 

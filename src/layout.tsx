@@ -2,6 +2,7 @@ import { For } from "solid-js";
 import { letter, rowClasses } from "./frequencies";
 import { useSelector } from '@xstate/store/solid';
 import { leftBoard, letterKey } from "./store";
+import { LetterKey } from "./key";
 
 export function Keyboard(props: { board: typeof leftBoard }) {
   const rows = useSelector(props.board, s => s.context.rows);
@@ -14,14 +15,5 @@ export function Keyboard(props: { board: typeof leftBoard }) {
               {(letter) => <LetterKey letter={letter} board={props.board} />}
             </For>
           </div>}</For></div>
-  </div>
-}
-
-function LetterKey(props: { letter: letterKey, board: typeof leftBoard }) {
-  const fingers = useSelector(props.board, s => s.context.fingers);
-  return <div
-    class={`w-12 h-12 flex items-center justify-center ${fingers()[props.letter.col]} ${rowClasses[props.letter.row]} rounded-md shadow-sm font-bold text-xl`}
-  >
-    {props.letter.letter}
   </div>
 }
