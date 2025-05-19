@@ -2,7 +2,7 @@ import { createStoreWithProducer } from "@xstate/store";
 import { useSelector } from "@xstate/store/solid";
 import { produce } from "immer";
 import { fingerColors } from "./frequencies";
-import { cyrillic, layout } from "./layout";
+import { azeke, cyrillic, layout } from "./layout";
   
 export interface letterKey {
   letter: string;
@@ -61,7 +61,7 @@ export function setLayout(
   });
 }
 
-setLayout([leftBoard, rightBoard], cyrillic);
+setLayout([leftBoard, rightBoard], azeke);
 
 export const cLeft = boardStore();
 export const cRight = boardStore();
