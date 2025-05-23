@@ -1,26 +1,12 @@
 export type layout = [left: string, right: string];
-export const cyrillic: layout = [
-  `
-йцуке
-фывап
-ячсми
-`,
-  `
-нгшщз
-ролдж
-тьбю⏎
-`,
-];
+export const cyrillic = `
+йцуке нгшщз
+фывап ролдж
+ячсми тьбю⏎
+`;
 
-export const azeke: layout = [
-    `
-йұуке
-қығап
-өәсми
- `,
-    `
-жңшүз
-ролін
-тдбх⏎
-  `,
-  ];
+export const azeke=`
+йұуке жңшүз
+қығап ролін
+өәсми тдбх⏎
+ `;

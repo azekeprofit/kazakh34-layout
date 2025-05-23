@@ -1,10 +1,11 @@
 ﻿import { For } from "solid-js";
-import { letterFrequencies } from "./frequencies";
-import { useBoards } from "./store";
+import { fingerColors, letterFrequencies } from "./frequencies";
+import { useSelector } from "@xstate/store/solid";
+import { keyboard } from "./store";
 
 export function Letters() {
-    const [left, right] = useBoards();
-    const missing = (l: string) => !left()[l] && !right()[l];
+    const letters = useSelector(keyboard,c=>c.context.letters);
+    const missing = (l: string) => !letters()[l];
     const missingCount = () => Object.keys(letterFrequencies).filter(missing).length;
 
     return <div>
@@ -31,8 +32,8 @@ export function BigramTable({ array }: { array: Record<string, number> }) {
 
 
 function Bigram(props: { bigram: string, freq: number }) {
-    const [left, right, lFingers, rFingers] = useBoards();
-    const col = (letter: string) => lFingers()[left()[letter]?.col] || rFingers()[right()[letter]?.col];
+    const letters=useSelector(keyboard,k=>k.context.letters);
+    const col = (letter: string) => fingerColors[letters()[letter]?.col];
     const sameFinger = () => col(props.bigram[0]) === col(props.bigram[1]);
     return <span class='inline-block' title={props.freq.toString()}>
         <Letter letter={props.bigram[0]} fingerClass={sameFinger() && col(props.bigram[0])} />

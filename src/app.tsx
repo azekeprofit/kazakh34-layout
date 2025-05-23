@@ -2,10 +2,10 @@ import { render } from "solid-js/web";
 import { bigrams, source } from "./frequencies";
 import { Keyboard } from "./keyboard";
 import { BigramTable, Letters } from "./panels";
-import { leftBoard, rightBoard, setLayout } from "./store";
 import { createContext, createSignal } from "solid-js";
 import { ZMK } from "./zmk";
 import { azeke, cyrillic } from "./layout";
+import { keyboard } from "./store";
 
 type boardModeType = 'fingers' | 'heatmap' | 'diff';
 export const BoardMode = createContext<() => boardModeType>(null!);
@@ -18,20 +18,19 @@ function App() {
         <h1>Kazakh layout analysis for 34 key split keyboard</h1>
 
         <p>
-            <button onClick={() => setLayout([leftBoard, rightBoard], cyrillic)}>
+            <button onClick={() => keyboard.send({ type: 'init', layout: cyrillic })}>
                 cyrillic
             </button> - standard layout, copied from standard Cyrillic, with Kazakh specific letters tucked away to numbers row
         </p>
         <p>
-            <button onClick={() => setLayout([leftBoard, rightBoard], azeke)}>
+            <button onClick={() => keyboard.send({ type: 'init', layout: azeke})}>
                 azeke
             </button> - my personal layout, with most frequent Kazakh letters placed on a 34 key split keyboard with the missing rarer letters put on ZMK combos (see full <a href="https://github.com/azekeprofit/zmk-config/blob/main/config/cradio.keymap">keymap</a> at my ZMK fork repo.
         </p>
 
         <div class="flex gap-5 font-sans">
             <BoardMode.Provider value={mode}>
-                <Keyboard board={leftBoard} />
-                <Keyboard board={rightBoard} />
+                <Keyboard />
             </BoardMode.Provider>
             <Letters />
             <BigramTable array={bigrams} />

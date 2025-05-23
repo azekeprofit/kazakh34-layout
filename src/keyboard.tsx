@@ -1,17 +1,22 @@
 import { useSelector } from '@xstate/store/solid';
-import { For } from "solid-js";
+import { For, Show } from "solid-js";
 import { LetterKey } from "./key";
-import { leftBoard } from "./store";
+import { keyboard } from './store';
 
-export function Keyboard(props: { board: typeof leftBoard }) {
-  const rows = useSelector(props.board, s => s.context.rows);
+export function Keyboard() {
+  const rows = useSelector(keyboard, s => s.context.rows);
   return <div class='capitalize'>
     <div class="grid grid-row ms-3 gap-2">
       <For each={rows()}>
         {(row) =>
-          <div class="grid grid-cols-5 gap-2">
+          <div class="grid grid-cols-11 gap-2">
             <For each={row}>
-              {(letter) => <LetterKey letter={letter} board={props.board} />}
+              {(letter,col) => <>
+                <LetterKey letter={letter} />
+                <Show when={col()==4}>
+                  <div></div>
+                </Show>
+              </>}
             </For>
           </div>}</For></div>
   </div>

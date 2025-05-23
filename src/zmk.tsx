@@ -1,9 +1,9 @@
 import { useSelector } from "@xstate/store/solid";
 import { For } from "solid-js";
-import { leftBoard, rightBoard } from "./store";
 import { letter } from "./frequencies";
+import { keyboard } from "./store";
 
-const zmkCodes:Record<letter,string>={
+const zmkCodes: Record<letter, string> = {
     'а': 'F',
     'е': 'T',
     'ы': 'S',
@@ -49,11 +49,10 @@ const zmkCodes:Record<letter,string>={
 }
 
 export function ZMK() {
-    const left = useSelector(leftBoard, (s) => s.context.rows);
-    const right = useSelector(rightBoard, (s) => s.context.rows);
+    const letters = useSelector(keyboard, (s) => s.context.rows);
 
-    const l = (row: number, col: number) => zmkCodes[left()[row][col].letter];
-    const r = (row: number, col: number) => zmkCodes[right()[row][col].letter];
+    const l = (row: number, col: number) => zmkCodes[letters()[row][col].letter];
+    const r = (row: number, col: number) => zmkCodes[letters()[row][4 + col].letter];
     return <div class='mt-2'>ZMK layer:
         <pre class="m-0 border-1">
             {`
@@ -64,8 +63,7 @@ export function ZMK() {
         Text:
         <pre class="m-0 border-1">
             <For each={[0, 1, 2]}>
-                {(i) => <>{left()[i].map(l => l.letter).join('')} {right()[i].map(l => l.letter).join('')}
-                <br/></>}
+                {(i) => <>{letters()[i].map(l => l.letter).join('')}<br /></>}
             </For>
 
         </pre>
