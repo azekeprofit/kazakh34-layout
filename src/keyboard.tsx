@@ -8,7 +8,7 @@ export function Keyboard() {
   return <div class='capitalize'>
     <div class="grid grid-row ms-3 gap-2">
       <For each={rows()}>
-        {(row) =>
+        {(row,rowIndex) =>
           <div class="grid grid-cols-11 gap-2">
             <For each={row}>
               {(letter,col) => <>

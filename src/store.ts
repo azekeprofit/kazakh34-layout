@@ -34,16 +34,17 @@ export const keyboardStore = (layout: string) =>
         initKeyboardStore(event.layout),
       setKey: (
         context,
-        event: { row: number; col: number; letter: string }
+        event: letterKey
       ) => {
-        const oldLetter = context.rows[event.row][event.col];
-        const newLetter = context.letters[event.letter];
-        if (newLetter) {
-          newLetter.letter = oldLetter.letter;
-          context.letters[oldLetter.letter] = newLetter;
-        } else delete context.letters[oldLetter.letter];
-        oldLetter.letter = event.letter;
-        context.letters[event.letter] = oldLetter;
+        const currentLetter = context.rows[event.row][event.col];
+        const swappedLetter = context.letters[event.letter];
+        if (swappedLetter) {
+          swappedLetter.letter = currentLetter.letter;
+          context.letters[currentLetter.letter] = swappedLetter;
+          context.rows[swappedLetter.row][swappedLetter.col]=swappedLetter;
+        } else delete context.letters[currentLetter.letter];
+        currentLetter.letter = event.letter;
+        context.letters[event.letter] = currentLetter;
       },
     },
   });

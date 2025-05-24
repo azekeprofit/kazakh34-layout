@@ -12,9 +12,10 @@ function heatMapColorforValue(place: number) {
 export function LetterKey(props: { letter: letterKey }) {
     const [inputMode, setInput] = createSignal(false);
     const cRows = useSelector(cyrillicBoard, s => s.context.rows);
+    const letter=useSelector(keyboard,k=>k.context.rows[props.letter.row][props.letter.col]);
     const boardMode = useContext(BoardMode);
-    const frequencyPlace = () => letters.indexOf(props.letter.letter);
-    const different = () => cRows()[props.letter.row][props.letter.col].letter !== props.letter.letter;
+    const frequencyPlace = () => letters.indexOf(letter().letter);
+    const different = () => cRows()[props.letter.row][props.letter.col].letter !==letter().letter;
     
     return <div class={`w-12 h-12
      flex items-center justify-center rounded-md shadow-sm font-bold text-xl cursor-pointer
@@ -34,6 +35,6 @@ export function LetterKey(props: { letter: letterKey }) {
         }}
         onblur={() => setInput(false)}
     >
-        {props.letter.letter}
+        {letter().letter}
     </div>
 }
