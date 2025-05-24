@@ -30,9 +30,8 @@ export const keyboardStore = (layout: string) =>
   createStoreWithProducer(produce, {
     context: initKeyboardStore(layout),
     on: {
-      init: (context, event: { layout: string }) => {
-        context = initKeyboardStore(event.layout);
-      },
+      init: (context, event: { layout: string }) =>
+        initKeyboardStore(event.layout),
       setKey: (
         context,
         event: { row: number; col: number; letter: string }

@@ -16,7 +16,6 @@ export const source =
   'А.K. Zhubanov, А.A. Zhanabekova, D. Tokmyrzaev, "THE STATISTICAL FOUNDATIONS OF THE LOCATION OF THE NATIONAL KAZAKH ALPHABET ON THE KEYBOARD", 2018';
 // Kazakh letter frequencies
 // full text corpus size is 67449690 letters
-export const letters = () => Object.keys(letterFrequencies);
 export const letterFrequencies = {
   а: 8630862,
   е: 5660025,
@@ -150,3 +149,5 @@ export const bigrams = {
   мы: 120124,
   ыз: 119848,
 };
+
+export const letters = Object.keys(letterFrequencies);
